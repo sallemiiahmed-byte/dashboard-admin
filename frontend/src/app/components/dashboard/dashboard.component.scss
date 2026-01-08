@@ -93,3 +93,73 @@
 .quick-actions-card {
   margin-top: 24px;
 }
+
+// Responsive Design
+@media (max-width: 768px) {
+  .dashboard-header {
+    margin-bottom: 24px;
+
+    h1 {
+      font-size: 24px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .stat-content {
+    gap: 12px;
+  }
+
+  .stat-icon {
+    width: 48px;
+    height: 48px;
+
+    mat-icon {
+      font-size: 24px;
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .stat-info {
+    h3 {
+      font-size: 24px;
+    }
+
+    p {
+      font-size: 12px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-header {
+    h1 {
+      font-size: 20px;
+    }
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .stat-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .stat-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto;
+  }
+}

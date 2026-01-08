@@ -51,3 +51,28 @@ mat-form-field {
   width: 100%;
 }
 
+// Responsive Design
+@media (max-width: 480px) {
+  .login-container {
+    padding: 16px;
+  }
+
+  .login-card {
+    padding: 24px;
+    max-width: 100%;
+  }
+
+  mat-card-title h1 {
+    font-size: 24px;
+  }
+
+  mat-card-subtitle {
+    font-size: 14px;
+  }
+
+  .login-button {
+    height: 44px;
+    font-size: 14px;
+  }
+}
+

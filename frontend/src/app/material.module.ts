@@ -21,6 +21,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { LayoutModule } from '@angular/cdk/layout';
 
 const MaterialModules = [
   MatButtonModule,
@@ -45,6 +46,7 @@ const MaterialModules = [
   MatTooltipModule,
   MatBadgeModule,
   MatGridListModule,
+  LayoutModule,
 ];
 
 @NgModule({
