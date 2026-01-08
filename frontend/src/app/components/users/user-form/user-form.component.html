@@ -1,0 +1,115 @@
+<h2 mat-dialog-title>
+  {{ isEditMode ? 'Modifier l\'utilisateur' : 'Nouvel utilisateur' }}
+</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="userForm" class="user-form">
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Prénom</mat-label>
+        <input matInput formControlName="firstName" required>
+        <mat-icon matPrefix>person</mat-icon>
+        <mat-error *ngIf="userForm.get('firstName')?.hasError('required')">
+          Le prénom est requis
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nom</mat-label>
+        <input matInput formControlName="lastName" required>
+        <mat-icon matPrefix>person</mat-icon>
+        <mat-error *ngIf="userForm.get('lastName')?.hasError('required')">
+          Le nom est requis
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" required>
+      <mat-icon matPrefix>email</mat-icon>
+      <mat-error *ngIf="userForm.get('email')?.hasError('required')">
+        L'email est requis
+      </mat-error>
+      <mat-error *ngIf="userForm.get('email')?.hasError('email')">
+        Format d'email invalide
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Mot de passe</mat-label>
+      <input
+        matInput
+        [type]="hidePassword ? 'password' : 'text'"
+        formControlName="password"
+        [required]="!isEditMode"
+      >
+      <mat-icon matPrefix>lock</mat-icon>
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hidePassword = !hidePassword"
+        type="button"
+      >
+        <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+      <mat-hint *ngIf="isEditMode">Laisser vide pour ne pas modifier</mat-hint>
+      <mat-error *ngIf="userForm.get('password')?.hasError('required')">
+        Le mot de passe est requis
+      </mat-error>
+      <mat-error *ngIf="userForm.get('password')?.hasError('minlength')">
+        Le mot de passe doit contenir au moins 6 caractères
+      </mat-error>
+    </mat-form-field>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Rôle</mat-label>
+        <mat-select formControlName="role" required>
+          <mat-option *ngFor="let role of roles" [value]="role.value">
+            {{ role.label }}
+          </mat-option>
+        </mat-select>
+        <mat-icon matPrefix>admin_panel_settings</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Statut</mat-label>
+        <mat-select formControlName="status" required>
+          <mat-option *ngFor="let status of statuses" [value]="status.value">
+            {{ status.label }}
+          </mat-option>
+        </mat-select>
+        <mat-icon matPrefix>info</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Téléphone</mat-label>
+      <input matInput type="tel" formControlName="phone">
+      <mat-icon matPrefix>phone</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Biographie</mat-label>
+      <textarea matInput formControlName="bio" rows="3"></textarea>
+      <mat-icon matPrefix>description</mat-icon>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()" [disabled]="isLoading">
+    Annuler
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="onSubmit()"
+    [disabled]="userForm.invalid || isLoading"
+  >
+    <mat-spinner *ngIf="isLoading" diameter="20" class="spinner"></mat-spinner>
+    <span *ngIf="!isLoading">{{ isEditMode ? 'Modifier' : 'Créer' }}</span>
+  </button>
+</mat-dialog-actions>
+

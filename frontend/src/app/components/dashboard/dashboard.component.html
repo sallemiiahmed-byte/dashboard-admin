@@ -1,0 +1,81 @@
+<app-layout>
+        <div class="dashboard-header">
+          <h1>Bienvenue, {{ currentUser?.firstName }} {{ currentUser?.lastName }}</h1>
+          <p>Gérez vos utilisateurs efficacement</p>
+        </div>
+
+        <div *ngIf="isLoading" class="loading-container">
+          <mat-spinner></mat-spinner>
+        </div>
+
+        <div *ngIf="!isLoading && stats" class="stats-grid">
+          <mat-card class="stat-card">
+            <mat-card-content>
+              <div class="stat-content">
+                <div class="stat-icon total">
+                  <mat-icon>people</mat-icon>
+                </div>
+                <div class="stat-info">
+                  <h3>{{ stats.total }}</h3>
+                  <p>Total utilisateurs</p>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="stat-card">
+            <mat-card-content>
+              <div class="stat-content">
+                <div class="stat-icon active">
+                  <mat-icon>check_circle</mat-icon>
+                </div>
+                <div class="stat-info">
+                  <h3>{{ stats.active }}</h3>
+                  <p>Utilisateurs actifs</p>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="stat-card">
+            <mat-card-content>
+              <div class="stat-content">
+                <div class="stat-icon inactive">
+                  <mat-icon>cancel</mat-icon>
+                </div>
+                <div class="stat-info">
+                  <h3>{{ stats.inactive }}</h3>
+                  <p>Utilisateurs inactifs</p>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="stat-card">
+            <mat-card-content>
+              <div class="stat-content">
+                <div class="stat-icon admin">
+                  <mat-icon>admin_panel_settings</mat-icon>
+                </div>
+                <div class="stat-info">
+                  <h3>{{ stats.admins }}</h3>
+                  <p>Administrateurs</p>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <mat-card class="quick-actions-card">
+          <mat-card-header>
+            <mat-card-title>Actions rapides</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <button mat-raised-button color="primary" (click)="navigateToUsers()">
+              <mat-icon>add</mat-icon>
+              Gérer les utilisateurs
+            </button>
+          </mat-card-content>
+        </mat-card>
+</app-layout>
+
